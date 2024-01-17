@@ -1,0 +1,23 @@
+body {
+    background-color: #FFFFFF;
+}
+img.logo {
+    width: 200px;
+    height: auto;
+}
+.card {
+    background-color: #BF932E;
+    color: #000000;
+}
+.card-header {
+    background-color: #FFFFFF;
+}
+.progress-bar {
+    background-color: #8C52FF;
+}
+ul {
+    list-style-type: none;
+}
+.instruction-checkbox:checked + label {
+    text-decoration: line-through;
+}
