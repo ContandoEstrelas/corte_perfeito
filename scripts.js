@@ -1,4 +1,4 @@
-    <script>
+
     const configurations = {
         inicial: { forca: '', velocidade: '', exposicao: '', passadas: '', observacoes: ''  },
         acetato: { forca: '33', velocidade: '2', exposicao: '5', passadas: '2', observacoes: '' },
