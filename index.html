@@ -137,12 +137,13 @@
                 let instructions = instructionSets[material];
 
                 // Display configurations
-                $('#configurations').html(`
-                    <p><strong>Força:</strong> ${config.força}</p>
-                    <p><strong>Velocidade:</strong> ${config.velocidade}</p>
-                    <p><strong>Exposição:</strong> ${config.exposição}</p>
-                    <p><strong>Passadas:</strong> ${config.passadas}</p>
-                `);
+            $('#configurations').html(`
+                <p><strong>Força:</strong> ${config.forca}</p>
+                <p><strong>Velocidade:</strong> ${config.velocidade}</p>
+                <p><strong>Exposição:</strong> ${config.exposicao}</p>
+                <p><strong>Passadas:</strong> ${config.passadas}</p>
+                <p><strong>Observações:</strong> ${config.observacoes}</p>
+            `);
 
                 // Display instructions
                 let instructionHTML = '<ul>';
