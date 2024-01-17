@@ -142,18 +142,18 @@
         
                 // Display configurations
                 $('#configurations').html(`
-                    <p><strong>Força:</strong> ${config.forca || ''}</p>
-                    <p><strong>Velocidade:</strong> ${config.velocidade || ''}</p>
-                    <p><strong>Exposição:</strong> ${config.exposicao || ''}</p>
-                    <p><strong>Passadas:</strong> ${config.passadas || ''}</p>
-                    <p><strong>Observações:</strong> ${config.observacoes || ''}</p>
+                    <p><strong>Força:</strong> ${config.forca || 'Não especificado'}</p>
+                    <p><strong>Velocidade:</strong> ${config.velocidade || 'Não especificado'}</p>
+                    <p><strong>Exposição:</strong> ${config.exposicao || 'Não especificado'}</p>
+                    <p><strong>Passadas:</strong> ${config.passadas || 'Não especificado'}</p>
+                    <p><strong>Observações:</strong> ${config.observacoes || 'Nenhuma'}</p>
                 `);
         
                 // Display instructions
                 let instructionHTML = '<ul>';
-                for(let i=0; i<instructions.length; i++) {
-                    instructionHTML += `<li><input type="checkbox" id="instruction-${i}" class="instruction-checkbox"> <label for="instruction-${i}">${instructions[i]}</label></li>`;
-                }
+                instructions.forEach((instruction, index) => {
+                    instructionHTML += `<li><input type="checkbox" id="instruction-${index}" class="instruction-checkbox"> <label for="instruction-${index}">${instruction}</label></li>`;
+                });
                 instructionHTML += '</ul>';
                 $('#instructions').html(instructionHTML);
         
@@ -164,15 +164,13 @@
             // Listen for checkbox changes
             $(document).on('change', '.instruction-checkbox', function() {
                 let checkboxes = $('.instruction-checkbox');
-                let checked = $('.instruction-checkbox:checked');
+                let checked = checkboxes.filter(':checked');
                 let progress = (checked.length / checkboxes.length) * 100;
                 updateProgressBar(progress);
             });
         });
-
         
-
-         function updateProgressBar(progress) {
+        function updateProgressBar(progress) {
             let progressBar = $('#progress-bar');
             progressBar.css('width', progress + '%');
             progressBar.attr('aria-valuenow', progress);
