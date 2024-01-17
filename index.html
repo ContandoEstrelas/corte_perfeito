@@ -43,12 +43,21 @@
                 <p class="card-text">Selecione o material para ver as configurações e instruções:</p>
                 <select class="form-control" id="material-select">
                     <option value="inicial">Selecione o material...</option>
-                    <option value="vinil_brilho_base">Vinil Brilho (Base)</option>
-                    <option value="vinil_brilho_rolo">Vinil Brilho (Rolo)</option>
-                    <option value="vinil_fosco_base">Vinil Fosco (Base)</option>
-                    <option value="vinil_fosco_rolo">Vinil Fosco (Rolo)</option>
-                    <option value="planner">Planner</option>
-                    <option value="quadro_incentivo">Quadro de Incentivo</option>
+                    <option value="acetato">Acetato 20 micras</option>
+                    <option value="eva_1mm_espessura">EVA 1mm</option>
+                    <option value="eva_com_glitter">EVA Glitter</option>
+                    <option value="lamicote">Lamicote (250g)</option>
+                    <option value="papel_75g">Papel (75 a 90g)</option>
+                    <option value="papel_180g">Papel (180g)</option>
+                    <option value="papel_280g">Papel (280g)</option>
+                    <option value="papel_300g">Papel 300g</option>
+                    <option value="papel_com_glitter_180g">Papel com Glitter 180g</option>
+                    <option value="papel_adesivo_180g_meio_corte">Papel Adesivo (180g) Meio Corte</option>
+                    <option value="papel_adesivo_135g_meio_corte">Papel Adesvivo 135g</option>
+                    <option value="planner">Planner Magnético</option>
+                    <option value="quadro_incentivo">Quadro de Incentivo Magnético</option>
+                    <option value="vinil_meio_corte">Vinil Meio Corte</option>
+                    <option value="vinil_metalizado">Vinil Metalizado</option>
                 </select>
                 <br>
                 <div id="configurations" class="mt-3"></div>
@@ -63,19 +72,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script>
-        const configurations = {
-            inicial: { força: '', velocidade: '', exposição: '', passadas: '' },
-            vinil_brilho_base: { força: '12', velocidade: '5', exposição: '1', passadas: '1' },
-            vinil_brilho_rolo: { força: '12', velocidade: '5', exposição: '1', passadas: '1' },
-            vinil_fosco_base: { força: '10', velocidade: '5', exposição: '1', passadas: '1' },
-            vinil_fosco_rolo: { força: '10', velocidade: '5', exposição: '1', passadas: '1' },
-            planner: { força: '33', velocidade: '1', exposição: '10', passadas: '4' },
-            quadro_incentivo: {força: '33', velocidade: '1', exposição: '10', passadas: '4' }
-        };
+    const configurations = {
+        inicial: { forca: '', velocidade: '', exposicao: '', passadas: '', observacoes: ''  },
+        acetato: { forca: '33', velocidade: '2', exposicao: '5', passadas: '2', observacoes: '' },
+        eva_1mm_espessura: { forca: '33', velocidade: '2', exposicao: '10', passadas: '3', observacoes: 'Na Cameo 4, usar o corte kraft no carrinho 2.' },
+        eva_com_glitter: { forca: '33', velocidade: '2', exposicao: '10', passadas: '3', observacoes: 'Na Cameo 4, usar o corte kraft no carrinho 2.' },
+        lamicote: { forca: '25', velocidade: '2', exposicao: '5', passadas: '2', observacoes: 'Marcar o box de sobrecorte - aquele triângulo depois das passadas.' },
+        papel_75g: { forca: '5 a 10', velocidade: '5', exposicao: '1', passadas: '1', observacoes: '' },
+        papel_180g: { forca: '18 a 20', velocidade: '5', exposicao: '3', passadas: '1', observacoes: '' },
+        papel_280g: { forca: '20 a 25', velocidade: '5', exposicao: '4', passadas: '1', observacoes: '' },
+        papel_300g: { forca: '25 a 30', velocidade: '2', exposicao: '5', passadas: '2 ou +', observacoes: 'Marcar o box de sobrecorte - aquele triângulo depois das passadas'},
+        papel_com_glitter_180g: { forca: '30', velocidade: '4', exposicao: '3 a 5', passadas: '2', observacoes: 'Ou tambem pode usar 2 passadas, com a forca 25 e exposição 3' },
+        papel_adesivo_180g_meio_corte: { forca: '15', velocidade: '4', exposicao: '2', passadas: '1', observacoes: '' },
+        papel_adesivo_135g_meio_corte: { forca: '2 a 5', velocidade: '6', exposicao: '1', passadas: '1', observacoes: 'Usar 5 de velocidade, caso haja muitos efeitos ou curvas' },
+        planner: { forca: '33', velocidade: '1', exposicao: '10', passadas: '4' , observacoes: '' },
+        quadro_incentivo: { forca: '33', velocidade: '1', exposicao: '10', passadas: '4' , observacoes: '' },
+        vinil_meio_corte: { forca: '10', velocidade: '2', exposicao: '1', passadas: '1', observacoes: ''  },
+        vinil_metalizado: { forca: '20', velocidade: '2', exposicao: '1', passadas: '1' , observacoes: '' }
+    };
         
         const instructionSets = {
             inicial: [],
-            vinil_brilho_base: [
+            vinil: [
                 'Colar vinil na base e colocar fita crepe caso a cola não esteja boa',
                 'Ajustar os roletes até o sulco',
                 'Ativar trava de segurança dos roletes',
@@ -84,35 +102,7 @@
                 'Conferir se as imagens estão com os pontos simplificados',
                 'Conferir se os nomes estão fundidos',
             ],
-            vinil_brilho_rolo: [
-                'Curvar a ponta do vinil para cima',
-                'Ajustar os roletes com 1cm de margem sobrando',
-                'Ativar trava de segurança dos roletes',
-                'Conferir se lâmina está limpa',
-                'Conferir se a base de corte não foi selecionada no programa',
-                'Conferir se as imagens estão com os pontos simplificados',
-                'Conferir se os nomes estão fundidos',
-                'Conferir se a fita teflon está íntegra'
-            ],
-            vinil_fosco_base: [
-                'Colar vinil na base e colocar fita crepe caso a cola não esteja boa',
-                'Ajustar os roletes até o sulco',
-                'Ativar trava de segurança dos roletes',
-                'Conferir se lâmina está limpa',
-                'Conferir se a base de corte foi selecionada no programa',
-                'Conferir se as imagens estão com os pontos simplificados',
-                'Conferir se os nomes estão fundidos',
-            ],
-            vinil_fosco_rolo: [
-                'Curvar a ponta do vinil para cima',
-                'Ajustar os roletes com 1cm de margem sobrando',
-                'Ativar trava de segurança dos roletes',
-                'Conferir se lâmina está limpa',
-                'Conferir se a base de corte não foi selecionada no programa',
-                'Conferir se as imagens estão com os pontos simplificados',
-                'Conferir se os nomes estão fundidos',
-                'Conferir se a fita teflon está íntegra'
-            ],
+            
             planner: [
                 'Colar material na base e colocar fita crepe caso a cola não esteja boa',
                 'Ajustar os roletes até o sulco',
@@ -129,6 +119,15 @@
                 'Conferir se a base de corte foi selecionada no programa',
                 'Conferir se a leitura das marcas de corte está na orientação correta (vertical ou horizontal conforme a arte)'
             ],
+            demais: [
+                'Colar material na base e colocar fita crepe caso a cola não esteja boa',
+                'Ajustar os roletes até o sulco',
+                'Ativar trava de segurança dos roletes',
+                'Conferir se lâmina está limpa',
+                'Conferir se a base de corte foi selecionada no programa',
+                'Conferir se a exposição foi corretamente selecionada no seu Bladekit',
+                'Conferir se o corte selecionado (azul ou vermelho) está de acordo com o carrinho em que se encontra a lâmina'
+            ],        
         };
 
         $(document).ready(function() {
