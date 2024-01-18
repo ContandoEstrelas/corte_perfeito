@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Silhouette Configurações</title>
     <link rel="shortcut icon" href="https://d3ugyf2ht6aenh.cloudfront.net/stores/001/124/395/themes/common/logo-1775124472-1583886474-8d992d475f8d5bcc511d328d006d298e1583886474-480-0.png?" type="image/x-icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -10,40 +10,62 @@
 </head>
 <body>
     <div class="container py-5">
-        <div class="card">
-            <div class="card-header">
-                <img src="https://d3ugyf2ht6aenh.cloudfront.net/stores/001/124/395/themes/common/logo-1775124472-1583886474-8d992d475f8d5bcc511d328d006d298e1583886474-480-0.png?" alt="logo" class="mx-auto d-block logo">
+        <!-- Card for material selection -->
+        <div id="card-material" class="card mb-3">
+            <div class="card-header text-center">
+                <strong>Seleção de Materiais</strong>
             </div>
             <div class="card-body">
-                <h4 class="card-title">Instruções para Configurações da Silhouette</h4>
-                <p class="card-text">Selecione o material para ver as configurações e instruções:</p>
-                <select class="form-control" id="material-select">
-                    <option value="inicial">Selecione o material...</option>
-                    <option value="acetato">Acetato 20 micras</option>
-                    <option value="eva_1mm_espessura">EVA 1mm</option>
-                    <option value="eva_com_glitter">EVA Glitter</option>
-                    <option value="lamicote">Lamicote (250g)</option>
-                    <option value="papel_75g">Papel (75 a 90g)</option>
-                    <option value="papel_180g">Papel (180g)</option>
-                    <option value="papel_280g">Papel (280g)</option>
-                    <option value="papel_300g">Papel 300g</option>
-                    <option value="papel_com_glitter_180g">Papel com Glitter 180g</option>
-                    <option value="papel_adesivo_180g_meio_corte">Papel Adesivo (180g) Meio Corte</option>
-                    <option value="papel_adesivo_135g_meio_corte">Papel Adesvivo 135g</option>
-                    <option value="planner">Planner Magnético</option>
-                    <option value="quadro_incentivo">Quadro de Incentivo Magnético</option>
-                    <option value="vinil_meio_corte">Vinil Meio Corte</option>
-                    <option value="vinil_metalizado">Vinil Metalizado</option>
-                </select>
-                <br>
-                <div id="configurations" class="mt-3"></div>
-                <div id="instructions" class="mt-3"></div>
-                <div class="progress mt-3" style="height: 30px;">
-                    <div id="progress-bar" class="progress-bar progress-bar-striped" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+            <select class="form-control" id="material-select">
+                <option value="inicial">Selecione o material...</option>
+                <option value="acetato">Acetato 20 micras</option>
+                <option value="eva_1mm_espessura">EVA 1mm</option>
+                <option value="eva_com_glitter">EVA Glitter</option>
+                <option value="lamicote">Lamicote (250g)</option>
+                <option value="papel_75g">Papel (75 a 90g)</option>
+                <option value="papel_180g">Papel (180g)</option>
+                <option value="papel_280g">Papel (280g)</option>
+                <option value="papel_300g">Papel 300g</option>
+                <option value="papel_com_glitter_180g">Papel com Glitter 180g</option>
+                <option value="papel_adesivo_180g_meio_corte">Papel Adesivo (180g) Meio Corte</option>
+                <option value="papel_adesivo_135g_meio_corte">Papel Adesvivo 135g</option>
+                <option value="planner">Planner Magnético</option>
+                <option value="quadro_incentivo">Quadro de Incentivo Magnético</option>
+                <option value="vinil_meio_corte">Vinil Meio Corte</option>
+                <option value="vinil_metalizado">Vinil Metalizado</option>
+            </select>
+                <button class="btn btn-primary mt-3" onclick="showCard('card-config')">Prosseguir</button>
+            </div>
+        </div>
+        
+        <!-- Card for configurations -->
+        <div id="card-config" class="card mb-3 d-none">
+            <div class="card-header text-center">
+                <strong>Configurações</strong>
+            </div>
+            <div class="card-body">
+                <div id="configurations" class="mt-3">
+                    <!-- configurations will be inserted here -->
                 </div>
+                <button class="btn btn-secondary mt-3" onclick="showCard('card-material')">Retornar</button>
+                <button class="btn btn-primary mt-3" onclick="showCard('card-checklist')">Prosseguir</button>
+            </div>
+        </div>
+        
+        <!-- Card for checklist -->
+        <div id="card-checklist" class="card mb-3 d-none">
+            <div class="card-header text-center">
+                <strong>Checklist</strong>
+            </div>
+            <div class="card-body">
+                <div id="instructions" class="mt-3">
+                    <!-- instructions will be inserted here -->
+                </div>
+                <button class="btn btn-secondary mt-3" onclick="showCard('card-config')">Retornar</button>
             </div>
         </div>
     </div>
+    
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
