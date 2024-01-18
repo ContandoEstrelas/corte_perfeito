@@ -91,6 +91,9 @@ footer {
     padding: 20px;
     background-color: #ffffff;
     color: white;
+    position: absolut;
+    bottom: 0;
+    width: 100%;
 }
 .social-buttons {
     display: flex;
@@ -148,6 +151,9 @@ footer {
     margin: 1rem;
     border: #ffffff;
     display: none;
+}
+.card:first-of-type {
+    display: block;
 }
 .card.active {
     display: block;
