@@ -60,46 +60,50 @@
                 'Conferir se o corte selecionado (azul ou vermelho) está de acordo com o carrinho em que se encontra a lâmina'
             ],        
         };
+function showCard(cardId) {
+    $('.card').addClass('d-none'); // Esconde todos os cards
+    $(`#${cardId}`).removeClass('d-none'); // Mostra o card específico
+}
 
-        $(document).ready(function() {
-            $('#material-select').on('change', function() {
-                let material = this.value;
-                let config = configurations[material];
-                let instructions = instructionSets[material] || instructionSets['demais'];
-        
-                // Display configurations
-                $('#configurations').html(`
-                    <p><strong>Força:</strong> ${config.forca || 'Não especificado'}</p>
-                    <p><strong>Velocidade:</strong> ${config.velocidade || 'Não especificado'}</p>
-                    <p><strong>Exposição:</strong> ${config.exposicao || 'Não especificado'}</p>
-                    <p><strong>Passadas:</strong> ${config.passadas || 'Não especificado'}</p>
-                    <p><strong>Observações:</strong> ${config.observacoes || 'Nenhuma'}</p>
-                `);
-        
-                // Display instructions
-                let instructionHTML = '<ul>';
-                instructions.forEach((instruction, index) => {
-                    instructionHTML += `<li><input type="checkbox" id="instruction-${index}" class="instruction-checkbox"> <label for="instruction-${index}">${instruction}</label></li>`;
-                });
-                instructionHTML += '</ul>';
-                $('#instructions').html(instructionHTML);
-        
-                // Reset progress bar
-                updateProgressBar(0);
-            });
-        
-            // Listen for checkbox changes
-            $(document).on('change', '.instruction-checkbox', function() {
-                let checkboxes = $('.instruction-checkbox');
-                let checked = checkboxes.filter(':checked');
-                let progress = (checked.length / checkboxes.length) * 100;
-                updateProgressBar(progress);
-            });
+$(document).ready(function() {
+    $('#material-select').on('change', function() {
+        let material = this.value;
+        let config = configurations[material];
+        let instructions = instructionSets[material] || instructionSets['demais'];
+
+        // Display configurations
+        $('#configurations').html(`
+            <p><strong>Força:</strong> ${config.forca || 'Não especificado'}</p>
+            <p><strong>Velocidade:</strong> ${config.velocidade || 'Não especificado'}</p>
+            <p><strong>Exposição:</strong> ${config.exposicao || 'Não especificado'}</p>
+            <p><strong>Passadas:</strong> ${config.passadas || 'Não especificado'}</p>
+            <p><strong>Observações:</strong> ${config.observacoes || 'Nenhuma'}</p>
+        `);
+
+        // Display instructions
+        let instructionHTML = '<ul>';
+        instructions.forEach((instruction, index) => {
+            instructionHTML += `<li><input type="checkbox" id="instruction-${index}" class="instruction-checkbox"> <label for="instruction-${index}">${instruction}</label></li>`;
         });
-        
-        function updateProgressBar(progress) {
-            let progressBar = $('#progress-bar');
-            progressBar.css('width', progress + '%');
-            progressBar.attr('aria-valuenow', progress);
-            progressBar.text(progress.toFixed(2) + '%');
-        }
+        instructionHTML += '</ul>';
+        $('#instructions').html(instructionHTML);
+
+        // Reset progress bar
+        updateProgressBar(0);
+    });
+
+    // Listen for checkbox changes
+    $(document).on('change', '.instruction-checkbox', function() {
+        let checkboxes = $('.instruction-checkbox');
+        let checked = checkboxes.filter(':checked');
+        let progress = (checked.length / checkboxes.length) * 100;
+        updateProgressBar(progress);
+    });
+
+    function updateProgressBar(progress) {
+        let progressBar = $('#progress-bar');
+        progressBar.css('width', progress + '%');
+        progressBar.attr('aria-valuenow', progress);
+        progressBar.text(progress.toFixed(2) + '%');
+    }
+});
