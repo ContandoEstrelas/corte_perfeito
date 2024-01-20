@@ -68,28 +68,33 @@ function showCard(cardId) {
 $(document).ready(function() {
     $('#material-select').on('change', function() {
         let material = this.value;
-        let config = configurations[material];
-        let instructions = instructionSets[material] || instructionSets['demais'];
+        if (material !== 'inicial') {
+            let config = configurations[material];
+            let instructions = instructionSets[material] || instructionSets['demais'];
 
-        // Display configurations
-        $('#configurations').html(`
-            <p><strong>Força:</strong> ${config.forca || 'Não especificado'}</p>
-            <p><strong>Velocidade:</strong> ${config.velocidade || 'Não especificado'}</p>
-            <p><strong>Exposição:</strong> ${config.exposicao || 'Não especificado'}</p>
-            <p><strong>Passadas:</strong> ${config.passadas || 'Não especificado'}</p>
-            <p><strong>Observações:</strong> ${config.observacoes || 'Nenhuma'}</p>
-        `);
+            // Atualiza o card de configurações com as informações do material selecionado
+            $('#configurations').html(`
+                <p><strong>Força:</strong> ${config.forca || 'Não especificado'}</p>
+                <p><strong>Velocidade:</strong> ${config.velocidade || 'Não especificado'}</p>
+                <p><strong>Exposição:</strong> ${config.exposicao || 'Não especificado'}</p>
+                <p><strong>Passadas:</strong> ${config.passadas || 'Não especificado'}</p>
+                <p><strong>Observações:</strong> ${config.observacoes || 'Nenhuma'}</p>
+            `);
 
-        // Display instructions
-        let instructionHTML = '<ul>';
-        instructions.forEach((instruction, index) => {
-            instructionHTML += `<li><input type="checkbox" id="instruction-${index}" class="instruction-checkbox"> <label for="instruction-${index}">${instruction}</label></li>`;
-        });
-        instructionHTML += '</ul>';
-        $('#instructions').html(instructionHTML);
+            // Atualiza a seção de instruções
+            let instructionHTML = '<ul>';
+            instructions.forEach((instruction, index) => {
+                instructionHTML += `<li><input type="checkbox" id="instruction-${index}" class="instruction-checkbox"> <label for="instruction-${index}">${instruction}</label></li>`;
+            });
+            instructionHTML += '</ul>';
+            $('#instructions').html(instructionHTML);
 
-        // Reset progress bar
-        updateProgressBar(0);
+            // Reset progress bar
+            updateProgressBar(0);
+
+            // Chama a função showCard para exibir o card de configurações
+            showCard('card-config');
+        }
     });
 
     // Listen for checkbox changes
