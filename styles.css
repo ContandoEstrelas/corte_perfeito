@@ -150,7 +150,6 @@ footer {
 .card {
     margin: 1rem;
     border: #ffffff;
-    display: none;
 }
 .card:first-of-type {
     display: block;
