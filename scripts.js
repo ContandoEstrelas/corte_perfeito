@@ -105,32 +105,36 @@ $(document).ready(function() {
         updateProgressBar(progress);
     });
 
+$(document).ready(function() {
+    // Evento de clique no botão 'prosseguir'
     $('#prosseguir').on('click', function() {
         let currentCard = $('.card:not(.d-none)');
         let nextCardId = '';
-    
+
         if (currentCard.attr('id') === 'card-material') {
             nextCardId = 'card-config';
         } else if (currentCard.attr('id') === 'card-config') {
             nextCardId = 'card-checklist';
         }
-    
+
         if (nextCardId) {
             showCard(nextCardId);
         }
     });
 
-$('#voltar').on('click', function() {
-    let currentCard = $('.card:not(.d-none)');
-    let previousCardId = '';
+    // Evento de clique no botão 'voltar'
+    $('#voltar').on('click', function() {
+        let currentCard = $('.card:not(.d-none)');
+        let previousCardId = '';
 
-    if (currentCard.attr('id') === 'card-checklist') {
-        previousCardId = 'card-config';
-    } else if (currentCard.attr('id') === 'card-config') {
-        previousCardId = 'card-material';
-    }
+        if (currentCard.attr('id') === 'card-checklist') {
+            previousCardId = 'card-config';
+        } else if (currentCard.attr('id') === 'card-config') {
+            previousCardId = 'card-material';
+        }
 
-    if (previousCardId) {
-        showCard(previousCardId);
-    }
+        if (previousCardId) {
+            showCard(previousCardId);
+        }
+    });
 });
