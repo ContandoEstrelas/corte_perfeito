@@ -105,10 +105,32 @@ $(document).ready(function() {
         updateProgressBar(progress);
     });
 
-    function updateProgressBar(progress) {
-        let progressBar = $('#progress-bar');
-        progressBar.css('width', progress + '%');
-        progressBar.attr('aria-valuenow', progress);
-        progressBar.text(progress.toFixed(2) + '%');
+    $('#prosseguir').on('click', function() {
+        let currentCard = $('.card:not(.d-none)');
+        let nextCardId = '';
+    
+        if (currentCard.attr('id') === 'card-material') {
+            nextCardId = 'card-config';
+        } else if (currentCard.attr('id') === 'card-config') {
+            nextCardId = 'card-checklist';
+        }
+    
+        if (nextCardId) {
+            showCard(nextCardId);
+        }
+    });
+
+$('#voltar').on('click', function() {
+    let currentCard = $('.card:not(.d-none)');
+    let previousCardId = '';
+
+    if (currentCard.attr('id') === 'card-checklist') {
+        previousCardId = 'card-config';
+    } else if (currentCard.attr('id') === 'card-config') {
+        previousCardId = 'card-material';
+    }
+
+    if (previousCardId) {
+        showCard(previousCardId);
     }
 });
