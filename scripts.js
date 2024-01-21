@@ -1,4 +1,4 @@
-
+$(document).ready(function() {
     const configurations = {
         inicial: { forca: '', velocidade: '', exposicao: '', passadas: '', observacoes: ''  },
         acetato: { forca: '33', velocidade: '2', exposicao: '5', passadas: '2', observacoes: '' },
@@ -18,54 +18,54 @@
         vinil_metalizado: { forca: '20', velocidade: '2', exposicao: '1', passadas: '1' , observacoes: '' }
     };
         
-        const instructionSets = {
-            inicial: [],
-            vinil_meio_corte: [
-                'Ajustar correta exposição da lâmina',
-                'Colar vinil na base e colocar fita crepe caso a cola não esteja boa',
-                'Ajustar os roletes até o sulco',
-                'Ativar trava de segurança dos roletes',
-                'Conferir se lâmina está limpa',
-                'Conferir se a base de corte foi selecionada no programa',
-                'Conferir se as imagens estão com os pontos simplificados',
-                'Conferir se os nomes estão fundidos',
-            ],
-            
-            planner: [
-                'Ajustar correta exposição da lâmina',
-                'Colar material na base e colocar fita crepe caso a cola não esteja boa',
-                'Ajustar os roletes até o sulco',
-                'Ativar trava de segurança dos roletes',
-                'Conferir se lâmina está limpa',
-                'Conferir se a base de corte foi selecionada no programa',
-                'Conferir se a leitura das marcas de corte está na orientação correta (vertical ou horizontal conforme a arte)'
-            ],
-            quadro_incentivo: [
-                'Ajustar correta exposição da lâmina',
-                'Colar material na base e colocar fita crepe caso a cola não esteja boa',
-                'Ajustar os roletes até o sulco',
-                'Ativar trava de segurança dos roletes',
-                'Conferir se lâmina está limpa',
-                'Conferir se a base de corte foi selecionada no programa',
-                'Conferir se a leitura das marcas de corte está na orientação correta (vertical ou horizontal conforme a arte)'
-            ],
-            demais: [
-                'Ajustar correta exposição da lâmina',
-                'Colar material na base e colocar fita crepe caso a cola não esteja boa',
-                'Ajustar os roletes até o sulco',
-                'Ativar trava de segurança dos roletes',
-                'Conferir se lâmina está limpa',
-                'Conferir se a base de corte foi selecionada no programa',
-                'Conferir se a exposição foi corretamente selecionada no seu Bladekit',
-                'Conferir se o corte selecionado (azul ou vermelho) está de acordo com o carrinho em que se encontra a lâmina'
-            ],        
-        };
-function showCard(cardId) {
-    $('.card').addClass('d-none'); // Esconde todos os cards
-    $(`#${cardId}`).removeClass('d-none'); // Mostra o card específico
-}
+    const instructionSets = {
+        inicial: [],
+        vinil_meio_corte: [
+            'Ajustar correta exposição da lâmina',
+            'Colar vinil na base e colocar fita crepe caso a cola não esteja boa',
+            'Ajustar os roletes até o sulco',
+            'Ativar trava de segurança dos roletes',
+            'Conferir se lâmina está limpa',
+            'Conferir se a base de corte foi selecionada no programa',
+            'Conferir se as imagens estão com os pontos simplificados',
+            'Conferir se os nomes estão fundidos',
+        ],  
+        planner: [
+            'Ajustar correta exposição da lâmina',
+            'Colar material na base e colocar fita crepe caso a cola não esteja boa',
+            'Ajustar os roletes até o sulco',
+            'Ativar trava de segurança dos roletes',
+            'Conferir se lâmina está limpa',
+            'Conferir se a base de corte foi selecionada no programa',
+            'Conferir se a leitura das marcas de corte está na orientação correta (vertical ou horizontal conforme a arte)'
+        ],
+        quadro_incentivo: [
+            'Ajustar correta exposição da lâmina',
+            'Colar material na base e colocar fita crepe caso a cola não esteja boa',
+            'Ajustar os roletes até o sulco',
+            'Ativar trava de segurança dos roletes',
+            'Conferir se lâmina está limpa',
+            'Conferir se a base de corte foi selecionada no programa',
+            'Conferir se a leitura das marcas de corte está na orientação correta (vertical ou horizontal conforme a arte)'
+        ],
+        demais: [
+            'Ajustar correta exposição da lâmina',
+            'Colar material na base e colocar fita crepe caso a cola não esteja boa',
+            'Ajustar os roletes até o sulco',
+            'Ativar trava de segurança dos roletes',
+            'Conferir se lâmina está limpa',
+            'Conferir se a base de corte foi selecionada no programa',
+            'Conferir se a exposição foi corretamente selecionada no seu Bladekit',
+            'Conferir se o corte selecionado (azul ou vermelho) está de acordo com o carrinho em que se encontra a lâmina'
+        ],        
+    };
+    
+    // Função para mostrar um card específico
+    function showCard(cardId) {
+        $('.card').addClass('d-none');
+        $(`#${cardId}`).removeClass('d-none');
+    }
 
-$(document).ready(function() {
     $('#material-select').on('change', function() {
         let material = this.value;
         if (material !== 'inicial') {
@@ -105,7 +105,6 @@ $(document).ready(function() {
         updateProgressBar(progress);
     });
 
-$(document).ready(function() {
     // Evento de clique no botão 'prosseguir'
     $('#prosseguir').on('click', function() {
         let currentCard = $('.card:not(.d-none)');
