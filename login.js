@@ -5,8 +5,8 @@ window.onload = function() {
 function salvarEmail() {
     const email = document.getElementById('email').value;
     localStorage.setItem('email', email);
-    // Redirecionar para a página principal
-    window.location.href = 'main.html';
+    window.location.href = 'main.html'; // Redirecionar para a página principal
+    return false; // Impedir o envio normal do formulário
 }
 
 function verificarUsuario() {
