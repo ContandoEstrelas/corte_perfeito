@@ -1,7 +1,7 @@
 $(document).ready(function() {
     const configurations = {
         inicial: { forca: '', velocidade: '', lamina: '', passadas: '', observacoes: ''  },
-        acetato: { forca: '33', velocidade: '2', lamina: '5', passadas: '2' },
+        acetato: { forca: '33', velocidade: '2', lamina: '5', passadas: '2', observacoes: ''},
         eva_1mm_espessura: { forca: '33', velocidade: '2', lamina: '10', passadas: '3', observacoes: 'Nas Cameos 4 e 5, usar o corte kraft no carrinho 2.' },
         eva_com_glitter: { forca: '33', velocidade: '2', lamina: '10', passadas: '3', observacoes: 'Nas Cameos 4 e 5, usar o corte kraft no carrinho 2.' },
         lamicote: { forca: '25', velocidade: '2', lamina: '5', passadas: '2', observacoes: 'Marcar o box de sobrecorte - aquele triângulo depois das passadas.' },
