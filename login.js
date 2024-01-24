@@ -1,6 +1,4 @@
-window.onload = function() {
-    verificarUsuario();
-};
+document.addEventListener('DOMContentLoaded', verificarUsuario);
 
 function salvarEmail() {
     const email = document.getElementById('email').value;
@@ -12,8 +10,6 @@ function salvarEmail() {
 function verificarUsuario() {
     const email = localStorage.getItem('email');
     if (email) {
-        document.getElementById('loginForm').style.display = 'none';
-        document.getElementById('welcomeMessage').style.display = 'block';
         // Redirecionar para a página principal
         window.location.href = 'main.html';
     }
