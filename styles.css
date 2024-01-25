@@ -265,4 +265,18 @@ input[type=range] {
   input[type=range]::-moz-range-progress {
     background: #BF932E;
   }
-  
+  #instructions ul {
+    list-style-type: none; /* Remove os marcadores de lista */
+    padding-left: 0; /* Remove o preenchimento padrão da lista */
+  }
+
+    #instructions li {
+        text-align: left; /* Alinha o texto à esquerda */
+        display: flex; /* Organiza o checkbox e o texto em linha */
+        align-items: center; /* Centraliza verticalmente o texto com o checkbox */
+    }
+
+#instructions .instruction-checkbox {
+    margin-right: 10px; /* Espaçamento entre o checkbox e o texto */
+}
+
