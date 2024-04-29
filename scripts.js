@@ -70,36 +70,33 @@ $(document).ready(function() {
         $(`#${cardId}`).removeClass('d-none');
     }
 
-    $('#material-select').on('change', function() {
+   $('#material-select').on('change', function() {
         let material = this.value;
         if (material !== 'inicial') {
             let config = configurations[material];
             let instructions = instructionSets[material] || instructionSets['demais'];
 
-            // Atualiza o card de configurações com as informações do material selecionado
-            $('#configurations').html(`
+            let configHTML = `
                 <p><strong>Força:</strong> ${config.forca || 'Não especificado'}</p>
                 <p><strong>Velocidade:</strong> ${config.velocidade || 'Não especificado'}</p>
                 <p><strong>Lâmina:</strong> ${config.lamina || 'Não especificado'}</p>
                 <p><strong>Passadas:</strong> ${config.passadas || 'Não especificado'}</p>
-                <p><strong>Observações:</strong> ${config.observacoes || 'Nenhuma'}</p>
-            `);
+                ${config.observacoes ? `<p><strong>Observações:</strong> ${config.observacoes}</p>` : ''}
+            `;
+            $('#configurations').html(configHTML);
 
-            // Atualiza a seção de instruções
-            let instructionHTML = '<ul>';
+            let instructionHTML = '<ul style="list-style-type: none; padding-left: 0;">';
             instructions.forEach((instruction, index) => {
                 instructionHTML += `<li><input type="checkbox" id="instruction-${index}" class="instruction-checkbox"> <label for="instruction-${index}">${instruction}</label></li>`;
             });
             instructionHTML += '</ul>';
             $('#instructions').html(instructionHTML);
 
-            // Reset progress bar
             updateProgressBar(0);
-
-            // Chama a função showCard para exibir o card de configurações
             showCard('card-config');
         }
     });
+    
 
     // Listen for checkbox changes
     $(document).on('change', '.instruction-checkbox', function() {
@@ -139,5 +136,8 @@ $(document).ready(function() {
         if (previousCardId) {
             showCard(previousCardId);
         }
+    });
+        $('#home-btn').on('click', function() {
+        showCard('card-material');
     });
 });
